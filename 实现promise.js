@@ -45,7 +45,24 @@ Promise.reject = function (value) {}
 /**
  * Promise 函数对象的all方法，返回一个promise对象，只有当所有promise都成功时，返回的promise状态才成功
  */
-Promise.all = function (value) {}
+Promise.all = function (arr) {
+    let aResult = []; // 用于存放每次执行后的返回结果
+    return new Promise ((reslove, reject) => {
+        let i = 0;
+        next(); // 开始逐个执行数组中的函数
+        function next() {
+            arr[i].then ((res)=>{
+                aResult.push(res)
+                i++;
+                if (i == arr.length) { // 如果函数都执行完，就执行reject
+                    resolve(aResult)
+                } else {
+                    next()
+                }
+            })
+        }
+    })
+}
 
 /**
  * Promise 函数对象的race方法，返回一个promise对象，状态有第一个完成的promise决定

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>左右布局</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+        .fixedColumn {
+            width: 40px;
+            float: left;
+            background-color: red;
+        }
+        .flexibleColumn {
+            height: 100%;
+            background-color: seagreen;
+        }
+    </style>
+    <body>
+        <!-- 左侧固定列 -->
+        <div class="fixedColumn">left</div>
+        
+        <div class="fixedColumn" style="float:right">left</div>
+		<!-- 右侧自适应宽度列 -->
+        <div class="flexibleColumn">right</div>
+        
+    </body>
+</html>
