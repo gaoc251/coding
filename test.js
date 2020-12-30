@@ -1,35 +1,20 @@
-const test = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
-
-function quickSort(array) {
-    if (array.length <=1) return array;
-    let left = [], right = []
-    let prvoitIndex = Math.floor(array.length/2);
-    let prvoit = array.splice(prvoitIndex, 1)[0];
-    array.forEach(item => {
-        if (item < prvoit) {
-            left.push(item)
-        } else {
-            right.push(item)
-        }
-    });
-    return quickSort(left).concat(prvoit, quickSort(right))
-}
-
-console.log("res", quickSort(test))
-
-// function quickSort(array) {
-//     if (array.length <=1) return array;
-//     const privotIndex = Math.floor(array.length/2);
-//     const privot = array.splice(privotIndex, 1)[0];
-//     const left = [], right = [];
-//     array.forEach(item => {
-//         if (privot > item) {
-//             left.push(item);
-//         } else {
-//             right.push(item)
-//         }
+const nums1 = [1,2,3,0,0,0],m=3
+const nums2 = [2,5,6],n=3
+// var merge = function (nums1, m, nums2, n) {
+//     for(let i = m;i<m+n;i++) {
+//         nums1[i] = nums2[i-m]
+//     }
+//     console.log("nums1", nums1)
+//     let nums = nums1.sort(function(a,b){
+//         return a-b
 //     })
-//     return quickSort(left).concat(privot, quickSort(right));
+//     return nums
 // }
-// const arr = [98, 42, 25, 54, 15, 3, 25, 72, 41, 10, 121];
-// console.log(quickSort(arr))
+
+var merge = function(nums1, m, nums2, n) {
+    nums1.splice(m, n, ...nums2);
+    return nums1.sort((a,b)=> {
+        return a-b
+    })
+}
+console.log("merge", merge([1,2,3,0,0,0], 3, [2,5,6], 3))
