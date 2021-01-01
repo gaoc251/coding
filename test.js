@@ -1,20 +1,13 @@
-const nums1 = [1,2,3,0,0,0],m=3
-const nums2 = [2,5,6],n=3
-// var merge = function (nums1, m, nums2, n) {
-//     for(let i = m;i<m+n;i++) {
-//         nums1[i] = nums2[i-m]
-//     }
-//     console.log("nums1", nums1)
-//     let nums = nums1.sort(function(a,b){
-//         return a-b
-//     })
-//     return nums
-// }
-
-var merge = function(nums1, m, nums2, n) {
-    nums1.splice(m, n, ...nums2);
-    return nums1.sort((a,b)=> {
-        return a-b
-    })
+var arr = [0,1,2,3,4,5,6,7,8,9]
+function foo (arr) {
+    var cloneArr = arr.concat();
+    var len = cloneArr.length;
+    for(var i=0;i<len;i++) {
+        var index = Math.floor(Math.random() * len);
+        var temp = cloneArr[index];
+        cloneArr[index] = cloneArr[i];
+        cloneArr[i] = temp
+    }
+    return cloneArr
 }
-console.log("merge", merge([1,2,3,0,0,0], 3, [2,5,6], 3))
+console.log("clone", foo(arr))

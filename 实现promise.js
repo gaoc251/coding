@@ -66,9 +66,22 @@ Promise.all = function (arr) {
 
 /**
  * Promise 函数对象的race方法，返回一个promise对象，状态有第一个完成的promise决定
+ * 赛跑的问题
  */
-Promise.race = function (value) {}
-
+Promise.race = function (values) {
+    return new Promise((resolve, reject) => {
+        if (!values.length) return;
+        values.forEach(item => {
+            if (isPromise(item)) {
+                item.then((data)=>{
+                    reslove(data)
+                }, reject)
+            } else {
+                resolve(item)
+            }
+        })
+    })
+}
 
 
 const promiseA = new Promise ((resolve, reject) => {
