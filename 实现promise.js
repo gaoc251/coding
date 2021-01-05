@@ -1,5 +1,6 @@
 /**
  * 定义整体构造函数，将promise向外暴露
+ * https://blog.csdn.net/lgno2/article/details/109446598
  */
 
 (
@@ -22,7 +23,52 @@
  * Promise 原型对象的then，指定一个成功或者失败的回调函数，返回一个新的promise对象
  */
 Promise.prototype.then = function (onResolved, onRejected) {
-    //
+    var self = this;
+    if (self.status == 'pending') {
+        // promise 当前状态还是pending状态，将回调函数保存起来
+        self.callbacks.push({
+            onResolved() {onResolved(self.data)},
+            onRejected() {onRejected(self.data)}
+        })
+    } else if (self.status == 'resolved') {
+        // 
+        setTimeout(() => {
+            const result = onResolved(self.data)
+            if (result instanceof Promise) {
+                // 
+                result.then(
+                    value => {resolve(value)},
+                    reason => {reject(reason)}
+                )
+            } else {
+                // 如果返回的不是promise，return的promise状态是resolved，value就是返回值
+                resolve(result)
+            }
+        });
+    } else {
+        // 
+        setTimeout(() => {
+            onRejected(self.data)
+        });
+    }
+}
+
+function resolve(value) {
+    // 当前状态不是pending，则不执行
+    if (this.status !== 'pending') {
+        return
+    }
+    // 将状态改为resolved
+    this.status = 'resolved'
+    this.data = value
+    // 如果有待执行的callback函数，立即异步执行回调调函数onResoleve
+    if (self.callbacks.length > 0) {
+        setTimeout(() => {
+            self.callbacks.forEach(callbackObj => {
+                callbackObj.onResolved(value)
+            }) 
+        });
+    }
 }
 
 /**
