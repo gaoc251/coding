@@ -30,7 +30,7 @@ function foo2 (arr) {
     var cloneArr = arr.concat();
     var len  = cloneArr.length;
     for (var i = 0;i<len; i++) {
-        var index = Math.floor(Math.random() * cloneArr.length);
+        var index = Math.floor(Math.random() * len);
         var temp = cloneArr[index];
         cloneArr[index] = cloneArr[i];
         cloneArr[i] = temp;
