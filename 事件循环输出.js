@@ -112,25 +112,54 @@
 
 
 // 题6
-const p = function () {
-    return new Promise((resolve, reject) => {
-        const p1 = new Promise((resolve, reject) =>{
-            setTimeout(()=>{
-                resolve(1)
-            }, 0)
-        })
-        p1.then((res)=>{
-            console.log(3)
-        })
-        console.log(4)
-        resolve(4)
-    })
-}
+// const p = function () {
+//     return new Promise((resolve, reject) => {
+//         const p1 = new Promise((resolve, reject) =>{
+//             setTimeout(()=>{
+//                 resolve(1)
+//             }, 0)
+//         })
+//         p1.then((res)=>{
+//             console.log(3)
+//         })
+//         console.log(4)
+//         resolve(4)
+//     })
+// }
 
-p().then((res)=>{
-    console.log(res)
-})
-console.log("end")
+// p().then((res)=>{
+//     console.log(res)
+// })
+// console.log("end")
 
 
 // 参考：https://segmentfault.com/a/1190000022805523
+
+
+setTimeout(() => {
+    console.log('异步1任务time1');
+    new Promise(function (resolve, reject) {
+        console.log('异步1宏任务promise');
+        setTimeout(() => {
+            console.log('异步1任务time2');
+        }, 0);
+        resolve();
+    }).then(function () {
+        console.log('异步1微任务then')
+    })
+}, 0);
+console.log('主线程宏任务');
+setTimeout(() => {
+    console.log('异步2任务time2');
+
+}, 0);
+new Promise(function (resolve, reject) {
+    console.log('宏任务promise');
+    // reject();
+    resolve();
+}).then(function () {
+    console.log('微任务then')
+}).catch(function () {
+    console.log('微任务catch')
+})
+console.log('主线程宏任务2');
