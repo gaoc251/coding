@@ -22,7 +22,7 @@ function deepClone(obj) {
     let newObj = new obj.constructor; // 不直接创建空对象的目的：克隆的结果和之前保持所属类  =》 即能克隆普通对象，又能克隆某个实例对象
     for(let key in obj) {
         if(obj.hasOwnProperty(key)) {
-             newObj[key] = deepClone(obj[key]);
+            newObj[key] = deepClone(obj[key]);
         }
     }
     return newObj;
