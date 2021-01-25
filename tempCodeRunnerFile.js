@@ -1,23 +1,10 @@
-function foo (arr) {
-//     var cloneArr = arr.concat()
-//     cloneArr.sort(function(n1,n2) {
-//         return Math.random() - 0.5
-//     })
-//     return cloneArr
-// }
+     if(str1[i] == str2[j] && str1[i-1] == str2[j-1]) {
+                    arr[i][j]=arr[i-1][j-1]+1
+                } else {
+                    arr[i][j] = 0;
+                }
 
-// console.log("foo", foo(arr))
-
-// // 递归的方式:性能不好
-// function foo1(arr) {
-//     var result = [];
-//     var cloneArr = arr.concat();
-//     (function(){
-//         if (!cloneArr.length){return}
-//         var index = Math.floor(Math.random()*cloneArr.length);
-//         result = result.concat(cloneArr.splice(index, 1))
-//         arguments.callee()
-//     })();
-//     return result;
-// }
-// console.log("foo1", foo1(arr))
+                if (arr[i][j] > maxLen) {
+                    maxLen = arr[i][j];
+                    index = i
+                }
