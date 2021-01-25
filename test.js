@@ -1,16 +1,27 @@
-// 给定数组 ['1a','2b','9c','5a'] ，输出出现次数最多的字母前数字之和 6。
-function test(data) {
-    var newObj = {},maxlen=0
-    for(var i=0;i<data.length;i++) {
-        if (newObj[data[i][1]]!= undefined) {
-            newObj[data[i][1]]+= Number(data[i][0])
-        } else {
-            newObj[data[i][1]] = 1
+const target = {
+    field1: 1,
+    field2: undefined,
+    field3: {
+        child: 'child'
+    },
+    field4: [2, 4, 8]
+};
+target.target = target;
+
+function clone(target, map = new WeakMap()) {
+    if (typeof target === 'object') {
+        let cloneTarget = Array.isArray(target) ? [] : {};
+        if (map.get(target)) {
+            return map.get(target);
         }
-        if(newObj[data[i][1]]>maxlen) {
-            maxlen = newObj[data[i][1]]
+        map.set(target, cloneTarget);
+        for (const key in target) {
+            cloneTarget[key] = clone(target[key], map);
         }
+        return cloneTarget;
+    } else {
+        return target;
     }
-    return maxlen
-}
-console.log(test(['1a','2b','9c','5a']))
+};
+
+console.log("clone", clone(target))
