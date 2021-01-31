@@ -1,20 +1,23 @@
-// 给定数组 ['1a','2b','9c','5a'] ，输出出现次数最多的字母前数字之和 6。
-function test (arr, num) {
-    let obj = {}
-    for (var i =0;i<arr.length;i++) {
-        if (obj[arr[i][1]] == undefined) {
-            arr[i][1] = Number(arr[i][0])
+function arrSort(arr1, arr2) {
+    var [i,j] = [0,0];
+    let res=[];
+    while (i<arr1.length ||j<arr2.length) {
+        if (arr1[i]>arr2[j]) {
+            res.push(arr2[j])
+            j++
+        } else if (arr1[i]<arr2[j]){
+            res.push(arr1[i])
+            i++
         } else {
-            arr[i][1] += Number(arr[i][0])
-        }
-    }
-    let res
-    for (let item in obj) {
-        if(obj[item] == num) {
-            res = item
+            arr1[i] && res.push(arr1[i])
+            i++
+            arr2[j] && res.push(arr2[j])
+            j++
         }
     }
     return res
-    
 }
-console.log("res", test(['1a','2b','9c','5a'], 6))
+
+let arrs = arrSort([2,4,6,7], [1,2,3,5,8,9,10,33,44,49]);
+
+console.log(arrs);
