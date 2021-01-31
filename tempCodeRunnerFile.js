@@ -1,10 +1,11 @@
-     if(str1[i] == str2[j] && str1[i-1] == str2[j-1]) {
-                    arr[i][j]=arr[i-1][j-1]+1
-                } else {
-                    arr[i][j] = 0;
-                }
-
-                if (arr[i][j] > maxLen) {
-                    maxLen = arr[i][j];
-                    index = i
-                }
+function computeSeaconds(str) {
+    debugger
+    let arr = str.split(':');
+    let sum = 0;
+    for (var i = 0;i<arr.length;i++) {
+        let temp = arr[i];
+        sum = sum + Number(temp)? 0: Number(temp)* Math.pow(60, 2-i)
+    }
+    return sum;
+}
+console.log("res", computeSeaconds("01:08:20"))
