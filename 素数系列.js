@@ -33,3 +33,24 @@ function prinmeList(n) {
     return res
 }
 console.log("素数", prinmeList(9))
+
+
+function findPrime () {
+    var list = [];
+    for (let n = 2;n<1000000;n++) {
+        let isPrime = true;
+        let sqrt = Math.sqrt(n);
+        for (var i = 2;i<= sqrt;i++) {
+            if (n%i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            list.push(n)
+        }
+    }
+    return list
+}
+
+console.log("100万内的素数", findPrime())
