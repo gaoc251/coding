@@ -1,11 +1,10 @@
-function computeSeaconds(str) {
-    debugger
-    let arr = str.split(':');
-    let sum = 0;
-    for (var i = 0;i<arr.length;i++) {
-        let temp = arr[i];
-        sum = sum + Number(temp)? 0: Number(temp)* Math.pow(60, 2-i)
-    }
-    return sum;
-}
-console.log("res", computeSeaconds("01:08:20"))
+for (var i =0;i<nums.length;i++) {
+       if (nums[i] != 0) {
+           nums[j] = nums[i];
+           if (i != j) {
+               nums[i] = 0
+           }
+           j++
+       }
+   }
+   return nums
