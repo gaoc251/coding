@@ -8,7 +8,6 @@ function getValue(obj, path) {
     if (typeof path !== 'string') throw new Error(`参数传入类型错误`);
 
     const splitFlag = path.indexOf('.');
-    debugger
     if (splitFlag < 0) return obj[path];
 
     const prefix = path.substring(0, splitFlag);
