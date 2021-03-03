@@ -1,60 +1,25 @@
-var p = [
-    [1, 1, 5, 5, 1],
-    [5, 5, 5, 1, 1],
-    [1, 1, 5, 5, 1],
-    [1, 1, 5, 1, 1],
-    [5, 1, 1, 1, 5]
-] 
-var q = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
-function isvalid(i,j) {
-    if (i<0||i>4||j<0||j>4) {
-        return 0
-    }
-    if (q[i][j] == 1){
-        return 0;
-    }
-    return 1;
-}
-
-function adjacentNumber(i, j, k, s) {
-    let a;
-    q[i][j] = 1;
-    if (isvalid(i-1, j)) {
-        if (p[i-1][j] == k) {
-            s++;
-            q[i-1][j] = 1;
-            adjacentNumber(i-1,j,k,s)
+function test (str) {
+    let stack = [];
+    let res = [];
+    for (let i=0;i<str.length;i++) {
+        if (str[i] == '('){
+            stack.push(i);
         }
+        if (str[i] == ')') {
+            if(stack.length == 0) {
+                console.log("抛出Exception");
+                return false
+            }
+            res.push(str.substring(stack[stack.length-1]+1,i))
+            stack.pop()
+        }    
     }
-    if (isvalid(i+1, j)) {
-        if (p[i+1][j] == k) {
-            s++;
-            q[i+1][j] = 1;
-            adjacentNumber(i+1,j,k,s)
-        }
-    }
-    if (isvalid(i, j-1)) {
-        if (p[i][j-1] == k) {
-            s++;
-            q[i][j-1] = 1;
-            adjacentNumber(i,j-1,k,s)
-        }
-    }
-    if (isvalid(i, j+1)) {
-        if (p[i][j+1] == k) {
-            s++;
-            q[i][j+1] = 1;
-            adjacentNumber(i,j+1,k,s)
-        }
+    if (stack.length != 0){
+        console.log("抛出Exception")
+    } else {
+        return res
     }
 }
-
-function main () {
-    let s=0
-    let i, j
-    adjacentNumber(1,2,5,s)
-    console.log("q", q)
-    console.log("p", p)
-}
-
-main()
+console.log("res", test("(1+1)*2"))
+console.log("res", test("((1+2)*(3+4))+2"))
+console.log("res", test(")*(3+4))+2"))
